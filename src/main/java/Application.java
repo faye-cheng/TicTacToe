@@ -1,11 +1,23 @@
+import java.io.BufferedReader;
+import java.io.PrintStream;
 
 public class Application {
 
-    public static void start() {
+    /*private final TicTacToeGame game;
+    private final PrintStream printStream;
+    private final BufferedReader bufferedReader;
+
+    public Application(TicTacToeGame game, PrintStream printStream, BufferedReader bufferedReader) {
+        this.game = game;
+        this.printStream = printStream;
+        this.bufferedReader = bufferedReader;
+    }*/
+
+    public Application() {
+    }
+
+    public void start() {
         TicTacToeGame game = new TicTacToeGame();
-        Player player1 = new Player();
-        Player player2 = new Player();
-        System.out.println("TIC TAC TOE GAME");
-        game.initialize();
+        game.start();
     }
 }

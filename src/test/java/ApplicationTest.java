@@ -1,41 +1,46 @@
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.PrintStream;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 import static org.mockito.ArgumentMatchers.contains;
-import static org.mockito.Mockito.times;
 
 public class ApplicationTest {
     TicTacToeGame ticTacToeGame;
     PrintStream printStream;
-    Application application;
-    InputStream inputStream;
     BufferedReader bufferedReader;
+    Application application;
 
     @Before
     public void initialize() {
         ticTacToeGame = mock(TicTacToeGame.class);
         printStream = mock(PrintStream.class);
-        inputStream = mock(InputStream.class);
         bufferedReader = mock(BufferedReader.class);
-        application = new Application();
+        application = new Application(ticTacToeGame, printStream, bufferedReader);
+    }
+
+    @Test
+    public void shouldPrintTicTacToeGameWhenApplicationStarts() {
+        application.start();
+        verify(printStream).println("TIC TAC TOE GAME");
     }
     @Test
     public void shouldDrawGameBoardWhenApplicationStarts() throws IOException {
-        when(bufferedReader.readLine()).thenReturn("2");
-        try {
-            application.start();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        verify(printStream.println("TIC TAC TOE GAME"));
+        application.start();
+        verify(printStream).println(contains("1 | 2 | 3 | \n" +
+                "- - - - -\n" +
+                "4 | 5 | 6 | \n" +
+                "- - - - -\n" +
+                "7 | 8 | 9 | "));
+    }
+
+    @Test
+    public void shouldPromptPlayer1ForMoveWhenGameStarts() {
+        application.start();
+        verify(printStream).println(contains("Player 1, Please enter a move:"));
     }
 
 }
