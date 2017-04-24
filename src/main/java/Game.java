@@ -63,7 +63,7 @@ public class Game {
                 numMoves++;
                 drawBoard();
                 checkIfWon();
-                switchPlayerTurn();
+                switchPlayer();
                 promptPlayerForMove();
             } else {
                 printStream.println("Sorry, position is already taken.\n");
@@ -76,12 +76,8 @@ public class Game {
         }
     }
 
-    private void switchPlayerTurn() {
-        if(player1Turn) {
-            player1Turn = false;
-        } else {
-            player1Turn = true;
-        }
+    private void switchPlayer() {
+        player1Turn = !player1Turn;
     }
 
 
