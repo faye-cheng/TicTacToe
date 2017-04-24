@@ -53,21 +53,26 @@ public class Game {
         Scanner scanner = new Scanner(System.in);
         int playerMove = scanner.nextInt();
 
-        if(board.values().contains(Integer.toString(playerMove))) {
-            if(player1Turn) {
-                board.put(playerMove, player1.marker);
+        if(playerMove >= 1 && playerMove <= 9) {
+            if(board.values().contains(Integer.toString(playerMove))) {
+                if(player1Turn) {
+                    board.put(playerMove, player1.marker);
+                } else {
+                    board.put(playerMove, player2.marker);
+                }
+                numMoves++;
+                drawBoard();
+                checkIfWon();
+                switchPlayerTurn();
+                promptPlayerForMove();
             } else {
-                board.put(playerMove, player2.marker);
+                printStream.println("Sorry, position is already taken.\n");
+                drawBoard();
+                promptPlayerForMove();
             }
-            numMoves++;
-            drawBoard();
-            checkIfWon();
-            switchPlayerTurn();
-            promptPlayerForMove();
         } else {
-            printStream.println("Sorry, position is already taken.\n");
+            printStream.println("Sorry, not a valid move.\n");
             drawBoard();
-            promptPlayerForMove();
         }
     }
 
