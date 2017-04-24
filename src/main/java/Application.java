@@ -3,21 +3,24 @@ import java.io.PrintStream;
 
 public class Application {
 
-    /*private final TicTacToeGame game;
+    private final Game game;
     private final PrintStream printStream;
     private final BufferedReader bufferedReader;
 
-    public Application(TicTacToeGame game, PrintStream printStream, BufferedReader bufferedReader) {
+
+    public Application(Game game, PrintStream printStream, BufferedReader bufferedReader) {
         this.game = game;
         this.printStream = printStream;
         this.bufferedReader = bufferedReader;
-    }*/
-
-    public Application() {
     }
 
     public void start() {
-        TicTacToeGame game = new TicTacToeGame();
+        displayTitle();
         game.start();
     }
+
+    private void displayTitle() {
+        System.out.println("TIC TAC TOE \n");
+    }
+    
 }
